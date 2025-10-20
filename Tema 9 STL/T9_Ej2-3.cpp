@@ -95,6 +95,8 @@ class Agenda{
         ofstream guardar(archivo, ios::binary);
         if (!guardar.is_open()) return;
 
+        size_t nPersonas = personas.size();
+        guardar.write(reinterpret_cast<const char*>(&nPersonas), sizeof(nPersonas));
         for (auto &p : personas){
             string nombre = p.getNombre(); size_t len = nombre.size();
             guardar.write(reinterpret_cast<const char*>(&len), sizeof(len));
@@ -112,6 +114,8 @@ class Agenda{
             guardar.write(reinterpret_cast<const char*>(&telefono), sizeof(telefono));
 
             auto contactos = p.getContactos();
+            size_t nContactos = contactos.size();
+            guardar.write(reinterpret_cast<const char*>(&nContactos), sizeof(size_t));
             for (const auto &c : contactos){
                 string tipo = c.getTipo(); len = tipo.size();
                 guardar.write(reinterpret_cast<const char*>(&len), sizeof(len));
