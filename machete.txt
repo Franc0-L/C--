@@ -1,0 +1,45 @@
+max_element:
+int maxVotos = max_element(catalogo.begin(), catalogo.end(), [](const Media &a, const Media&b){
+    return a.getCantVotos() < b.getCantVotos();
+    })->getCantVotos();
+
+copy_if:
+copy_if(catalogo.begin(), catalogo.end(), back_inserter(aux), [maxVotos](const Media &c){
+    return c.getCantVotos() == maxVotos;
+    });
+
+sort:
+sort(aux.begin(), aux.end(), [](const Media &a, const Media &b){
+    if (a.getPromedio() != b.getPromedio()) return a.getPromedio() > b.getPromedio();
+    });
+
+
+    vector<Media> top5Valoracion() const{
+        vector<Media> aux = catalogo;
+        sort(aux.begin(), aux.end(), [](const Media &a, const Media &b){
+            if (a.getPromedio() != b.getPromedio()) return a.getPromedio() > b.getPromedio();
+            return a.getCantVotos() > b.getCantVotos();
+        });
+        if (aux.size() > 5) aux.resize(5);
+        return aux;
+    }
+
+    vector<Media> masVotadas() const{
+        vector<Media> aux;
+        if (catalogo.empty()) return aux;
+        int maxVotos = max_element(catalogo.begin(), catalogo.end(), [](const Media &a, const Media&b){
+            return a.getCantVotos() < b.getCantVotos();
+        })->getCantVotos();
+
+        copy_if(catalogo.begin(), catalogo.end(), back_inserter(aux), [maxVotos](const Media &c){
+            return c.getCantVotos() == maxVotos;
+        });
+
+        return aux;
+    }
+
+    map<char, int> votosPorTipo() const{
+        map<char, int> cont;
+        for (const auto &v : catalogo) cont[v.getTipo()] += v.getCantVotos();
+        return cont;
+    }
