@@ -3,7 +3,7 @@
 #include <string>
 #include <fstream>
 #include <algorithm>
-#include <cstring>
+
 /*
 La empresa Telecom lo contrata dado que desea brindar un servicio de notificaciones para empresas.
 El sistema deberá poder enviar email y mensajes de texto. Con las siguientes características:

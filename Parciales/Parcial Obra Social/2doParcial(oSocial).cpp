@@ -1,4 +1,9 @@
 #include <iostream>
+#include <vector>
+#include <algorithm>
+#include <fstream>
+#include <string>
+#include <map>
 /*
 Una Obra Social lo contrata para realizar un software que permita saber si un cliente que tiene un id y un nombre
 cuenta con una prestación determinada. La obra social tiene 3 tipos de clientes:
@@ -25,7 +30,14 @@ D. (10) Que obtenga las prestaciones que se repite en todos planes.
 */
 using namespace std;
 
+struct strUsuario{
+    int id;
+    char nombre[200];
+    char tipo; // b:basico, m:medio, p:premium
+    int cantidad; // cantidad de veces que se utilizó el servicio en el mes
+};
+
 int main() {
-    
+
     return 0;
 }
