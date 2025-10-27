@@ -128,7 +128,6 @@ class GestorWeb{
 
     vector<Web> getTop5(){
         auto top5 = webs;
-        // comparator toma referencias constantes (mejor práctica)
         sort(top5.begin(), top5.end(), [](Web &w1, Web &w2){
             return w1.getPuntaje() > w2.getPuntaje();
         });
@@ -139,7 +138,6 @@ class GestorWeb{
 
     vector<Web> getAccesosDirectos(){
         vector<Web> res;
-        // predicate toma const Web& (mejor práctica)
         copy_if(webs.begin(), webs.end(), back_inserter(res), [](Web &w){
             return w.revisarAcceso('D');
         });
